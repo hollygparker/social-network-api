@@ -57,5 +57,29 @@ thoughtController = {
                     : res.json(thoughtDB)
             )
             .catch((err) => res.status(500).json(err));
+    },
+
+    deleteThought(req, res) {
+        Thought.findOneAndRemove({ _id: req.params.thoughtId })
+            .then((thoughtDB) =>
+                !thoughtDB
+                    ? res.status(404).json({ message: 'No thought found with that ID' })
+                    : User.findOneAndUpdate(
+                        { thoughts: req.params.thoughtId },
+                        { $pull: { thoughts: req.params.thoughtId } },
+                        { new: true }
+                    )
+            )
+            .then((userDB) =>
+                !userDB
+                    ? res.status(404).json({
+                        message: 'Thought deleted, no associated user found',
+                    })
+                    : res.json({ message: 'Thought successfully deleted' })
+            )
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json(err);
+            });
     }
 }
