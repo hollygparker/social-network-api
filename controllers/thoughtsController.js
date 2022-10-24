@@ -43,5 +43,19 @@ thoughtController = {
                 : res.json(userDB)
         )
         .catch((err) => res.status(400).json(err));
+    },
+
+    updateThought(req, res) {
+        Thought.findOneAndUpdate(
+            { _id: req.params.thoughtId },
+            { $set: req.body },
+            { runValidators: true, new: true }
+        )
+            .then((thoughtDB) =>
+                !thoughtDB
+                    ? res.status(404).json({ message: 'No thought found with that ID' })
+                    : res.json(thoughtDB)
+            )
+            .catch((err) => res.status(500).json(err));
     }
 }
