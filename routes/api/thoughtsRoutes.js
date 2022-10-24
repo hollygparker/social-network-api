@@ -19,3 +19,5 @@ router.route('/:thoughtId').get(getSingleThought).put(updateThought).delete(dele
 router.route('/:thoughtId/reactions').post(addReaction);
 // deleting a reaction on the route :thoughtId/reactions/:reactionId reactions are assc with thoughts
 router.route('/:thoughtId/reactions/:reactionId').delete(removeReaction)
+
+module.exports = router
