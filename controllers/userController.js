@@ -39,6 +39,7 @@ const userController = {
     User.create(req.body)
     console.log(req.body, "REQ BODY")
       .then((userDB) => res.json(userDB))
+      // console.log(userDB)
       .catch((err) => res.status(500).json(err));
   },
 
