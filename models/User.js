@@ -5,13 +5,13 @@ const userSchema = new Schema (
       
         username: {
             type: String,
-            required: true,
+            required: "please enter a username",
             trim: true,
             unique: true
         },
         email: {
             type: String,
-            required: true,
+            required: "please enter an email",
             unique: true,
             // using regex generic for email matching
             match: [/.+@.+\..+/, "Email must match correct formatting! abc@email.com"]
@@ -42,6 +42,6 @@ userSchema
     .get(function() {
         return this.friends.length
     })
-const User = model('user', userSchema)
+const User = model('User', userSchema)
 // exporting the user variable
 module.exports = User;

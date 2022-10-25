@@ -35,7 +35,9 @@ const userController = {
   },
   // create a new post
   createUser(req, res) {
+    console.log("CREATE USER")
     User.create(req.body)
+    console.log(req.body, "REQ BODY")
       .then((userDB) => res.json(userDB))
       .catch((err) => res.status(500).json(err));
   },
