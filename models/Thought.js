@@ -34,6 +34,6 @@ thoughtSchema
     .get(function() {
         return this.reactions.length
     })
-const Thought = model('thought', thoughtSchema)
+const Thought = model('Thought', thoughtSchema)
 // exporting the thought variable
 module.exports = Thought;
