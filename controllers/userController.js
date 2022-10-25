@@ -25,7 +25,7 @@ const userController = {
         if(userDB) {
           res.json({ userDB })
         } else{
-          res.status(404).json({ message: 'User not found with that ID' })
+          res.status(404).json({ message: 'User not found' })
         }
       })
       .catch((err) => {
