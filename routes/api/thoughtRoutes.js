@@ -9,7 +9,7 @@ const {
     addReaction,
     removeReaction,
 
-} = require ('../../controllers/thoughtsController')
+} = require ('../../controllers/thoughtController')
 
 // getting all thoughts and posting on the / route
 router.route('/').get(getThoughts).post(createThought);
@@ -20,4 +20,4 @@ router.route('/:thoughtId/reactions').post(addReaction);
 // deleting a reaction on the route :thoughtId/reactions/:reactionId reactions are assc with thoughts
 router.route('/:thoughtId/reactions/:reactionId').delete(removeReaction)
 
-module.exports = router
+module.exports = router;
