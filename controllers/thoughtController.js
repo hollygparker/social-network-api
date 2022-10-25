@@ -2,6 +2,7 @@ const { Thought, User } = require('../models');
 
 thoughtController = {
     getThoughts(req, res) {
+        console.log("GETTING ALL THOUGHTS")
         Thought.find()
         .then((thoughtDB) => {
             res.json(thoughtDB);
@@ -16,7 +17,7 @@ thoughtController = {
         Thought.findOne({ _id: req.params.thoughtId })
         .then(async (thoughtDB) =>
         !thoughtDB
-            ? res.status(404).json({ message: 'No thought found with that ID' })
+            ? res.status(404).json({ message: 'No thought found!' })
             : res.json({ thoughtDB })
         )
         .catch((err) => {
@@ -35,12 +36,12 @@ thoughtController = {
             )
         })
 
-        .then((userDB) =>
-            !userDB
+        .then((userDatabase) =>
+            !userDatabase
                 ? res
                     .status(404)
-                    .json({ message: 'No user found with that ID' })
-                : res.json(userDB)
+                    .json({ message: 'No user found!' })
+                : res.json(userDatabase)
         )
         .catch((err) => res.status(400).json(err));
     },
@@ -53,7 +54,7 @@ thoughtController = {
         )
             .then((thoughtDB) =>
                 !thoughtDB
-                    ? res.status(404).json({ message: 'No thought found with that ID' })
+                    ? res.status(404).json({ message: 'No thought found!' })
                     : res.json(thoughtDB)
             )
             .catch((err) => res.status(500).json(err));
@@ -70,10 +71,10 @@ thoughtController = {
                         { new: true }
                     )
             )
-            .then((userDB) =>
-                !userDB
+            .then((userDatabase) =>
+                !userDatabase
                     ? res.status(404).json({
-                        message: 'Thought deleted, no associated user found',
+                        message: 'Thought deleted',
                     })
                     : res.json({ message: 'Thought successfully deleted' })
             )
@@ -119,4 +120,4 @@ thoughtController = {
     },
 };
 
-module.exports = thoughtController
+module.exports = thoughtController;
